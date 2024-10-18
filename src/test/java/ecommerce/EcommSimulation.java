@@ -13,8 +13,6 @@ import io.gatling.javaapi.http.*;
 
 public class EcommSimulation extends Simulation {
 
-  static final FeederBuilder<Object> usersFeeder = jsonFile(userFeeder).circular();
-
   static final HttpProtocolBuilder httpProtocolBase =
       http.baseUrl(baseUrl)
           .acceptHeader("application/json")
@@ -26,15 +24,11 @@ public class EcommSimulation extends Simulation {
           .exec(
               homeAnonymous,
               pause(5),
-              feed(usersFeeder),
-              loginPage,
-              pause(10),
-              login,
-              homePage,
-              products,
-              pause(5),
-              addRandomProductToCartItems(),
-              cart);
+              authenticate,
+              homeAuthenticated,
+              addRandomProductToCart,
+              checkOut
+             );
 
   {
     setUp(scn.injectOpen(atOnceUsers(users))).protocols(httpProtocolBase);
