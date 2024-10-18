@@ -4,15 +4,14 @@ import static ecommerce.endpoints.APIendpoints.*;
 import static ecommerce.endpoints.WebEndpoints.*;
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
+import static ecommerce.utils.Config.*;
 
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
 public class EcommSimulation extends Simulation {
 
-  static final String baseUrl = "https://api-ecomm.gatling.io";
-
-  static final FeederBuilder<Object> usersFeeder = jsonFile("users.json").circular();
+  static final FeederBuilder<Object> usersFeeder = jsonFile(userFeeder).circular();
 
   static final HttpProtocolBuilder httpProtocolBase =
       http.baseUrl(baseUrl)
@@ -24,6 +23,6 @@ public class EcommSimulation extends Simulation {
       scenario("scenario 1").exec(homePage, session, products, feed(usersFeeder), login);
 
   {
-    setUp(scn.injectOpen(atOnceUsers(1))).protocols(httpProtocolBase);
+    setUp(scn.injectOpen(atOnceUsers(users))).protocols(httpProtocolBase);
   }
 }
