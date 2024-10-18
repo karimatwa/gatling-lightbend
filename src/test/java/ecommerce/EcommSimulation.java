@@ -18,7 +18,7 @@ public class EcommSimulation extends Simulation {
           .userAgentHeader(
               "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
 
-  static final ScenarioBuilder scn = scenario("scenario 1").exec(homePage, session);
+  static final ScenarioBuilder scn = scenario("scenario 1").exec(homePage, session, products);
 
   {
     setUp(scn.injectOpen(atOnceUsers(1))).protocols(httpProtocolBase);
