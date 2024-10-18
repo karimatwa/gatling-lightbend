@@ -1,8 +1,6 @@
 package ecommerce;
 
 import static ecommerce.endpoints.APIendpoints.*;
-import static ecommerce.endpoints.WebEndpoints.*;
-import static ecommerce.utils.Actions.*;
 import static ecommerce.utils.Config.*;
 import static ecommerce.groups.UsersGroups.*;
 import static io.gatling.javaapi.core.CoreDsl.*;
