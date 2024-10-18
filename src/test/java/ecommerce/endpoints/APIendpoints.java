@@ -37,10 +37,11 @@ public class APIendpoints {
           .body(ElFileBody("bodies/cart.json"))
           .check(status().is(200));
 
-          public static final HttpRequestActionBuilder checkOut =
-          http("Checkout")
-              .post("/checkout")
-              .asJson()
-              .body(ElFileBody("bodies/cart.json"))
-              .check(status().is(200));
+  public static final HttpRequestActionBuilder checkOut =
+      http("Checkout")
+          .post("/checkout")
+          .header("Authorization", "#{%s}".formatted(ACCESS_TOKEN))
+          .asJson()
+          .body(ElFileBody("bodies/cart.json"))
+          .check(status().is(200));
 }

@@ -10,6 +10,6 @@ public class WebEndpoints {
   public static final HttpRequestActionBuilder homePage =
       http("HomePage").get(pageUrl).check(status().in(200, 304));
 
-      public static final HttpRequestActionBuilder loginPage =
+  public static final HttpRequestActionBuilder loginPage =
       http("HomePage").get(pageUrl + "/login").check(status().in(200, 304));
 }
